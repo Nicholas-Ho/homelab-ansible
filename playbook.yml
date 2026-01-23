@@ -1,6 +1,5 @@
 - name: Set up dev environment
-  hosts: dev_hosts
-  ansible.builtin.import_playbook: imported_playbooks/Dev-Environment-Setup
+  ansible.builtin.import_playbook: imported_playbooks/Dev-Environment-Setup/ansible/playbook.yml
 
 - name: Set up server node
   hosts: server_hosts
