@@ -26,12 +26,8 @@
     uris: https://download.docker.com/linux/debian
     suites: "{{ ansible_facts['distribution_release'] }}"
     components: stable
-    architectures: arm64
+    architectures: "{{ target_arch }}"
     signed_by: /etc/apt/keyrings/docker.asc
-
-- name: Update apt cache
-  ansible.builtin.apt:
-    update_cache: true
 
 - name: Install Docker
   ansible.builtin.apt:
@@ -41,6 +37,7 @@
       - containerd.io
       - docker-buildx-plugin
       - docker-compose-plugin
+    update_cache: true
 
 - name: Ensure docker group exists
   ansible.builtin.group:
