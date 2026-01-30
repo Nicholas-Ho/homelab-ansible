@@ -8,3 +8,11 @@
     - name: Install Docker
       include_role:
         name: install_docker
+
+    - name: Install Terraform
+      include_role:
+        name: install_terraform
+
+    - name: Configure for EJBCA
+      include_role:
+        name: ejbca_preconfigure
