@@ -5,6 +5,11 @@
   hosts: server_hosts
   become: true
   tasks:
-    - name: Install Docker
-      include_role:
-        name: install_docker
+    - name: Install Podman
+      ansible.builtin.apt:
+        name: podman
+        update_cache: true
+
+    - name: Install Terraform
+      ansible.builtin.include_role:
+        name: install_terraform
