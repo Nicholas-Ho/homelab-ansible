@@ -1,0 +1,26 @@
+- name: Ensure directory is present
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/Documents/server"
+    state: directory
+    mode: '0755'
+
+- name: Clone git respository
+  ansible.builtin.git:
+    repo: 'https://github.com/Nicholas-Ho/homelab-compose.git'
+    dest: "{{ ansible_user_dir }}/Documents/server/compose"
+
+- name: Ensure data directories are present
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - "{{ ansible_user_dir }}/Documents/server/.data/ejbca/mariadb"
+    - "{{ ansible_user_dir }}/Documents/server/.data/caddy/data"
+    - "{{ ansible_user_dir }}/Documents/server/.data/caddy/config"
+    - "{{ ansible_user_dir }}/Documents/server/.data/caddy/certs"
+    - "{{ ansible_user_dir }}/Documents/server/.data/headscale/lib"
+    - "{{ ansible_user_dir }}/Documents/server/.data/headscale/run"
+
+- name: Preconfiguration for EJBCA
+  ansible.builtin.include_tasks: ejbca_preconfig.yml

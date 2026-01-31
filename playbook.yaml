@@ -6,13 +6,13 @@
   become: true
   tasks:
     - name: Install Docker
-      include_role:
+      ansible.builtin.include_role:
         name: install_docker
 
     - name: Install Terraform
-      include_role:
+      ansible.builtin.include_role:
         name: install_terraform
 
-    - name: Configure for EJBCA
-      include_role:
-        name: ejbca_preconfigure
+    - name: Set up for Compose
+      ansible.builtin.include_role:
+        name: setup_compose
