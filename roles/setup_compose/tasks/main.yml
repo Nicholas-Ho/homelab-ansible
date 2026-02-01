@@ -4,7 +4,7 @@
     state: directory
     mode: '0755'
 
-- name: Clone git respository
+- name: Clone git repository
   ansible.builtin.git:
     repo: 'https://github.com/Nicholas-Ho/homelab-compose.git'
     dest: "{{ ansible_user_dir }}/Documents/server/compose"
