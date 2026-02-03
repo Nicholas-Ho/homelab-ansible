@@ -3,7 +3,6 @@
 
 - name: Set up server node
   hosts: server_hosts
-  become: true
   tasks:
     - name: Install Docker
       ansible.builtin.include_role:
@@ -13,6 +12,14 @@
       ansible.builtin.include_role:
         name: install_terraform
 
+    - name: Set up iptables rules
+      ansible.builtin.include_role:
+        name: setup_iptables
+
     - name: Set up for Compose
       ansible.builtin.include_role:
         name: setup_compose
+
+    - name: Set up for Terraform
+      ansible.builtin.include_role:
+        name: setup_terraform

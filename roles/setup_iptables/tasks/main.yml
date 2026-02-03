@@ -1,0 +1,9 @@
+- name: Restore iptables config
+  ansible.builtin.shell: "iptables-restore < {{ role_path }}/files/rules.v4"
+  become: true
+
+- name: Reload Docker daemon to rebuild Docker iptables rules
+  ansible.builtin.systemd_service:
+    name: docker
+    state: restarted
+  become: true

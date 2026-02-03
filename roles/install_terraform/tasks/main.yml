@@ -18,11 +18,13 @@
     url: https://apt.releases.hashicorp.com/gpg
     dest: /etc/apt/keyrings/hashicorp.asc
     mode: '0644'
+  become: true
 
 - name: Dearmor HashiCorp GPG key
   ansible.builtin.command:
     cmd: gpg --dearmor -o /etc/apt/keyrings/hashicorp.gpg /etc/apt/keyrings/hashicorp.asc
     creates: /etc/apt/keyrings/hashicorp.gpg
+  become: true
 
 - name: Add Hashicorp apt repostiory
   ansible.builtin.deb822_repository:
@@ -39,3 +41,4 @@
     name:
       - terraform
     update_cache: true
+  become: true
