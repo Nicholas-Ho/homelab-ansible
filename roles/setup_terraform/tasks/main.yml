@@ -8,6 +8,3 @@
   ansible.builtin.git:
     repo: 'https://github.com/Nicholas-Ho/homelab-terraform.git'
     dest: "{{ ansible_user_dir }}/Documents/server/terraform"
-
-- name: Set up Dynamic DNS
-  ansible.builtin.include_tasks: setup_ddns.yml

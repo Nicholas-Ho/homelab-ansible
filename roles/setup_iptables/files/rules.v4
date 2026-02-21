@@ -11,7 +11,7 @@
 # Allow established connections
 -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 
-# Allows Docker to publish port 443
--A INPUT -p tcp --dport 443 -j ACCEPT
+# # Allows Docker to publish port 8443
+# -A INPUT -p tcp --dport 8443 -j ACCEPT
 
 COMMIT
