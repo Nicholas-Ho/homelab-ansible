@@ -19,8 +19,8 @@
     - "{{ ansible_user_dir }}/Documents/server/.data/caddy/data"
     - "{{ ansible_user_dir }}/Documents/server/.data/caddy/config"
     - "{{ ansible_user_dir }}/Documents/server/.data/caddy/certs"
-    - "{{ ansible_user_dir }}/Documents/server/.data/headscale/lib"
-    - "{{ ansible_user_dir }}/Documents/server/.data/headscale/run"
+    - "{{ ansible_user_dir }}/Documents/server/.data/vaultwarden"
+    - "{{ ansible_user_dir }}/Documents/server/.data/pihole"
 
 - name: Preconfiguration for EJBCA
   ansible.builtin.include_tasks: ejbca_preconfig.yml
