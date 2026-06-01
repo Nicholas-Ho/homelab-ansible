@@ -1,17 +1,17 @@
 - name: Ensure directory is present
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/Documents/server"
+    path: "{{ ansible_facts['user_dir'] }}/Documents/server"
     state: directory
     mode: '0755'
 
 - name: Clone git repository
   ansible.builtin.git:
     repo: 'https://github.com/Nicholas-Ho/homelab-compose.git'
-    dest: "{{ ansible_user_dir }}/Documents/server/compose"
+    dest: "{{ ansible_facts['user_dir'] }}/Documents/server/compose"
 
 - name: Define data directory
   ansible.builtin.set_fact:
-    data_dir: "{{ ansible_user_dir }}/Documents/server/.data"
+    data_dir: "{{ ansible_facts['user_dir'] }}/Documents/server/.data"
 
 - name: Ensure data directories are present
   ansible.builtin.file:
