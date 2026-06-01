@@ -9,18 +9,40 @@
     repo: 'https://github.com/Nicholas-Ho/homelab-compose.git'
     dest: "{{ ansible_user_dir }}/Documents/server/compose"
 
+- name: Define data directory
+  ansible.builtin.set_fact:
+    data_dir: "{{ ansible_user_dir }}/Documents/server/.data"
+
 - name: Ensure data directories are present
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     mode: '0755'
   loop:
-    - "{{ ansible_user_dir }}/Documents/server/.data/ejbca/mariadb"
-    - "{{ ansible_user_dir }}/Documents/server/.data/caddy/data"
-    - "{{ ansible_user_dir }}/Documents/server/.data/caddy/config"
-    - "{{ ansible_user_dir }}/Documents/server/.data/caddy/certs"
-    - "{{ ansible_user_dir }}/Documents/server/.data/vaultwarden"
-    - "{{ ansible_user_dir }}/Documents/server/.data/pihole"
+    # === EJBCA ===
+    - "{{ data_dir }}/ejbca"
+    - "{{ data_dir }}/ejbca/mariadb"
+
+    # === Internal ===
+    - "{{ data_dir }}/tailscale/state"
+    - "{{ data_dir }}/caddy/internal/data"
+    - "{{ data_dir }}/caddy/internal/config"
+    - "{{ data_dir }}/caddy/internal/certs"
+    - "{{ data_dir }}/vaultwarden"
+    - "{{ data_dir }}/pihole"
+    - "{{ data_dir }}/searxng"
+    - "{{ data_dir }}/silverbullet"
+    - "{{ data_dir }}/postgresql"
+    - "{{ data_dir }}/prometheus"
+    - "{{ data_dir }}/grafana"
+    - "{{ data_dir }}/n8n/n8n"
+    - "{{ data_dir }}/n8n/certs"
+    - "{{ data_dir }}/silverbullet/Homelab/Services/n8n/Mounted/"
+
+    # === External ===
+    - "{{ data_dir }}/caddy/external/data"
+    - "{{ data_dir }}/caddy/external/config"
+    - "{{ data_dir }}/caddy/external/certs"
 
 - name: Preconfiguration for EJBCA
   ansible.builtin.include_tasks: ejbca_preconfig.yml
