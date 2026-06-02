@@ -1,3 +1,2 @@
-[submodule "imported_playbooks/Dev-Environment-Setup"]
-	path = imported_playbooks/Dev-Environment-Setup
-	url = https://github.com/Nicholas-Ho/Dev-Environment-Setup.git
+[submodule "ansible/imported_playbooks/Dev-Environment-Setup"]
+	pat = ansible/imported_playbooks/Dev-Environment-Setup
