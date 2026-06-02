@@ -12,6 +12,10 @@
       ansible.builtin.include_role:
         name: install_terraform
 
+    - name: Install system-wide Tailscale
+      ansible.builtin.include_role:
+        name: install_system_tailscale
+
     - name: Set up iptables rules
       ansible.builtin.include_role:
         name: setup_iptables
@@ -23,3 +27,7 @@
     - name: Set up for Terraform
       ansible.builtin.include_role:
         name: setup_terraform
+
+    - name: Set up for system-wide Tailscale (SSH)
+      ansible.builtin.include_role:
+        name: setup_system_tailscale
