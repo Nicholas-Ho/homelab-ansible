@@ -35,6 +35,7 @@
     components: main
     architectures: "{{ target_arch }}"
     signed_by: /etc/apt/keyrings/hashicorp.gpg
+  become: true
 
 - name: Install Terraform
   ansible.builtin.apt:

@@ -29,6 +29,7 @@
     components: main
     architectures: "{{ target_arch }}"
     signed_by: /etc/apt/keyrings/tailscale-archive-keyring.gpg
+  become: true
 
 - name: Install Tailscale
   ansible.builtin.apt:

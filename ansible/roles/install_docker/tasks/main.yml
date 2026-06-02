@@ -29,6 +29,7 @@
     components: stable
     architectures: "{{ target_arch }}"
     signed_by: /etc/apt/keyrings/docker.asc
+  become: true
 
 - name: Install Docker
   ansible.builtin.apt:
