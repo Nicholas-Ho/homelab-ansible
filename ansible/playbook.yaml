@@ -31,3 +31,10 @@
     - name: Set up for system-wide Tailscale (SSH)
       ansible.builtin.include_role:
         name: setup_system_tailscale
+
+    - name: Install general packages
+      ansible.builtin.apt:
+        name:
+          - tmux
+        update_cache: true
+      become: true

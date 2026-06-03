@@ -18,6 +18,7 @@
     path: "{{ item }}"
     state: directory
     mode: '0777'
+  ignore_errors: true  # Docker containers may chown data directories
   loop:
     # === EJBCA ===
     - "{{ data_dir }}/ejbca"
