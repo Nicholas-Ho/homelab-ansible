@@ -1,0 +1,25 @@
+- name: Create iptables persistence directory
+  ansible.builtin.file:
+    path: /etc/iptables
+    state: directory
+    mode: '0755'
+  become: true
+
+- name: Copy iptables config
+  ansible.builtin.copy:
+    src: rules.v4
+    dest: /etc/iptables/rules.v4
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+
+- name: Restore iptables config
+  ansible.builtin.shell: "iptables-restore < /etc/iptables/rules.v4"
+  become: true
+
+- name: Reload Docker daemon to rebuild Docker iptables rules
+  ansible.builtin.systemd_service:
+    name: docker
+    state: restarted
+  become: true

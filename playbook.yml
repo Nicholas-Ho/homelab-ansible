@@ -1,7 +1,0 @@
-- name: Set up server node
-  hosts: server_hosts
-  become: true
-  tasks:
-    - name: Install Docker
-      include_role:
-        name: install_docker

@@ -1,0 +1,20 @@
+*filter
+
+# Default policies
+:INPUT DROP [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+
+# Allow localhost
+-A INPUT -i lo -j ACCEPT
+
+# Allow established connections
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+# Allow SSH
+-A INPUT -i tailscale0 -p tcp --dport 22 -m conntrack --ctstate NEW -j ACCEPT
+
+# # Allows Docker to publish port 8443
+# -A INPUT -p tcp --dport 8443 -j ACCEPT
+
+COMMIT
